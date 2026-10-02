@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORÉA CAFE</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Loading screen -->
+<div id="splash"><div class="logo">ORÉA<span>CAFE</span></div></div>
+
+<!-- Top bar (always visible) -->
+<header class="top">
+  <div><h1>ORÉA CAFE</h1><p>What are you craving? ☕✨</p></div>
+  <button id="cartBtn" data-go="cart" aria-label="Open cart">🛒<b id="cartCount">0</b></button>
+</header>
+
+<main>
+  <!-- MENU -->
+  <section id="menuView" class="view">
+    <div class="actions">
+      <button class="bulk" data-go="bulk">🎉 BULK &amp; EVENT ORDERS</button>
+      <button id="trackBtn" class="ghost hidden" data-go="done">📦 Track my order</button>
+    </div>
+    <nav id="tabs"></nav>
+    <div id="menu"></div>
+  </section>
+
+  <!-- CART (filled in by script.js) -->
+  <section id="cartView" class="view hidden"></section>
+
+  <!-- CHECKOUT -->
+  <section id="checkoutView" class="view hidden">
+    <button class="back" data-go="cart">← Back to cart</button>
+    <h2>Checkout</h2>
+    <form id="checkoutForm">
+      <h3>How would you like to receive your order?</h3>
+      <div class="choice">
+        <label><input type="radio" name="mode" value="pickup" checked><span>🛍️ PICK UP</span></label>
+        <label><input type="radio" name="mode" value="delivery"><span>🛵 DELIVERY<small>Customer arranges rider</small></span></label>
+      </div>
+
+      <div id="pickupBox">
+        <div class="choice">
+          <label><input type="radio" name="when" value="asap" checked><span>⚡ ASAP</span></label>
+          <label><input type="radio" name="when" value="later"><span>📅 Schedule for later</span></label>
+        </div>
+        <p id="asapNote" class="note"></p>
+        <div id="laterBox" class="hidden">
+          <label>Date<input type="date" id="pDate"></label>
+          <label>Time<input type="time" id="pTime"></label>
+          <p id="hoursNote" class="note"></p>
+        </div>
+      </div>
+
+      <div id="deliveryBox" class="hidden">
+        <div class="notice"><b>Customer-arranged delivery:</b><br>Oréa Cafe does not currently provide delivery. Please arrange and pay for your own rider to collect your order from Oréa Cafe and deliver it to you.</div>
+        <label>Delivery address<input id="address"></label>
+        <label>Landmark<input id="landmark"></label>
+        <label>Additional delivery instructions<textarea id="dInfo"></textarea></label>
+        <label class="check"><input type="checkbox" id="agree"><span>I understand that Oréa Cafe does not provide delivery and I am responsible for arranging and paying for my own rider.</span></label>
+      </div>
+
+      <label>Full name<input id="name" required></label>
+      <label>Phone number<input id="phone" type="tel" required></label>
+      <label>Special order instructions<textarea id="notes"></textarea></label>
+
+      <div id="coSummary" class="sum"></div>
+      <p id="coError" class="error"></p>
+      <button class="primary" type="submit">Place order</button>
+    </form>
+  </section>
+
+  <!-- BULK & EVENT ORDERS -->
+  <section id="bulkView" class="view hidden">
+    <button class="back" data-go="menu">← Back to menu</button>
+    <h2>🎉 Bulk &amp; Event Orders</h2>
+    <div class="notice">Bulk orders require 48–72 hours advance notice. Please select a suitable date or contact Oréa Cafe for assistance.</div>
+    <form id="bulkForm">
+      <label>Customer name<input id="bName" required></label>
+      <label>Phone number<input id="bPhone" type="tel" required></label>
+      <label>Type of event
+        <select id="bType"><option>Party</option><option>Funeral</option><option>Meeting</option><option>Event</option><option>Other large order</option></select>
+      </label>
+      <label>Event date<input type="date" id="bDate" required></label>
+      <label>Preferred pickup time<input type="time" id="bTime" required></label>
+      <label>Number of people<input type="number" id="bPeople" min="1" required></label>
+      <label>Items required and quantities<textarea id="bItems" required placeholder="e.g. 30 Chicken Shawarma, 20 Pancake"></textarea></label>
+      <label>Special instructions<textarea id="bNotes"></textarea></label>
+      <p id="bulkMsg" class="error"></p>
+      <button class="primary" type="submit">Send bulk order request</button>
+    </form>
+  </section>
+
+  <!-- CONFIRMATION + TRACKING (filled in by script.js) -->
+  <section id="doneView" class="view hidden"></section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
